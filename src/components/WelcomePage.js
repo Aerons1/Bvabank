@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './WelcomePage.css';
 import bankingVideo from '../assets/bankingvid.mp4';
 import logo from '../assets/bankinglogo1.png';
-import { loginAdmin, loginUser } from '../api/auth'; // ✅ Use API file
+import { loginAdmin, loginUser } from '../api/auth';
 import { toast } from 'react-toastify';
 
 const WelcomePage = () => {
@@ -13,10 +13,14 @@ const WelcomePage = () => {
 
   const handleLogin = async () => {
     try {
-      const isAdmin = email === process.env.REACT_APP_ADMIN_EMAIL;
+      const adminEmail = process.env.REACT_APP_ADMIN_EMAIL?.toLowerCase();
+      const isAdmin = email.trim().toLowerCase() === adminEmail;
+
       const res = isAdmin
         ? await loginAdmin(email, password)
         : await loginUser(email, password);
+
+      console.log("Login response:", res);
 
       localStorage.setItem('token', res.data.token);
 
@@ -30,6 +34,7 @@ const WelcomePage = () => {
       }
     } catch (err) {
       toast.error('Login failed: ' + (err.response?.data?.message || 'Unknown error'));
+      console.error("Login error:", err);
     }
   };
 
