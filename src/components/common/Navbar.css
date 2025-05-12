@@ -1,0 +1,10 @@
+.navbar .btn {
+    transition: all 0.3s ease;
+  }
+  
+  .navbar .btn:hover {
+    background-color: #ffffff;
+    color: #212529;
+    border-color: #ffffff;
+  }
+  

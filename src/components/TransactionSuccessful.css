@@ -1,0 +1,33 @@
+.success-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(243, 249, 255, 0.85), rgba(210, 236, 249, 0.85)),
+              url('../assets/bankinglogo1.png') no-repeat center center;
+  background-size: cover;
+  padding: 2rem;
+}
+
+.success-card {
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid #d1e7f3;
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.success-icon {
+  font-size: 3rem;
+  color: #28a745;
+  animation: pop 0.6s ease-out forwards;
+  transform: scale(0.9);
+}
+
+@keyframes pop {
+  to {
+    transform: scale(1);
+  }
+}

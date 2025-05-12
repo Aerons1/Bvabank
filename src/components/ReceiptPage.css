@@ -1,0 +1,71 @@
+/* Full-screen dynamic background */
+.receipt-background {
+    background-image: url('../assets/bankinglogo1.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    overflow: hidden;
+  }
+  
+  .receipt-overlay {
+    position: absolute;
+    inset: 0;
+    
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  
+  .receipt-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    padding: 30px;
+    width: 100%;
+    max-width: 700px;
+  }
+  
+  /* Logo Styling */
+  .bank-logo {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  /* Loading Text */
+  .receipt-loading {
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  /* Custom alert box */
+  .custom-alert {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    border: 1px solid #ffeeba;
+    margin-bottom: 1rem;
+  }
+  
+  /* Styled input */
+  .custom-input {
+    border: 2px solid #28a745;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .custom-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  }
+  

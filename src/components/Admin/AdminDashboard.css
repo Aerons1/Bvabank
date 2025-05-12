@@ -1,0 +1,41 @@
+/* Full-screen background image with a subtle overlay */
+.bg-premium-image {
+  position: relative;
+  background: url('../../assets/bankinglogo1.png') no-repeat center center/cover;
+  color: #ffffff;
+}
+
+.overlay {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
+  z-index: 0;
+}
+
+/* Premium card style */
+.premium-card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.z-1 {
+  position: relative;
+  z-index: 1;
+}
