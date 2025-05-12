@@ -1,7 +1,6 @@
-// auth.js
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_BASE_URL; // ✅ Matches .env
+const API_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const loginAdmin = async (email, password) => {
   return await axios.post(`${API_URL}/admin/login`, { email, password });

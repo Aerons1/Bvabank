@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WelcomePage.css';
 import bankingVideo from '../assets/bankingvid.mp4';
-import logo from '../assets/bankinglogo1.png'; // ✅ Import the logo
-import axios from 'axios';
+import logo from '../assets/bankinglogo1.png';
+import { loginAdmin, loginUser } from '../api/auth'; // ✅ Use API file
 import { toast } from 'react-toastify';
 
 const WelcomePage = () => {
@@ -13,13 +13,14 @@ const WelcomePage = () => {
 
   const handleLogin = async () => {
     try {
-      const endpoint =
-        email === process.env.REACT_APP_ADMIN_EMAIL ? '/api/admin/login' : '/api/users/login';
-      const res = await axios.post(`http://localhost:5000${endpoint}`, { email, password });
+      const isAdmin = email === process.env.REACT_APP_ADMIN_EMAIL;
+      const res = isAdmin
+        ? await loginAdmin(email, password)
+        : await loginUser(email, password);
 
       localStorage.setItem('token', res.data.token);
 
-      if (email === process.env.REACT_APP_ADMIN_EMAIL) {
+      if (isAdmin) {
         toast.success('Admin login successful');
         navigate('/admin');
       } else {
@@ -40,9 +41,7 @@ const WelcomePage = () => {
       </video>
       <div className="overlay" />
       <div className="welcome-content">
-        {/* ✅ Logo at top */}
         <img src={logo} alt="Banking Logo" className="welcome-logo mb-4" style={{ maxWidth: '180px' }} />
-        
         <h1 className="display-4 text-white mb-4">Welcome to BVA Intercontinental Bank</h1>
         <p className="lead text-white mb-4">Secure. Smart. Reliable. Premium Banking.</p>
         <div className="form-box bg-white p-4 rounded shadow">
