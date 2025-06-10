@@ -1,32 +1,24 @@
-// src/utils/axiosInstance.js
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance';
 
-const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api',
-});
+// No need for an API_URL constant here, axiosInstance already handles the base URL.
 
-// Request interceptor to attach token
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-// Optional: response interceptor to handle token expiration or unauthorized access
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      console.warn('Unauthorized or forbidden. You may need to re-login.');
-      // Optional: redirect or logout logic here
-    }
-    return Promise.reject(error);
+export const loginAdmin = async (email, password) => {
+  try {
+    // axiosInstance.baseURL is already e.g., 'https://bvabankserver.onrender.com/api'
+    // So, we just append the specific route part '/admin/login'
+    return await axiosInstance.post('/admin/login', { email, password });
+  } catch (error) {
+    console.error("Admin login failed:", error);
+    throw error;
   }
-);
+};
 
-export default axiosInstance;
+export const loginUser = async (email, password) => {
+  try {
+    // Similarly, for user login, just the relative path
+    return await axiosInstance.post('/users/login', { email, password });
+  } catch (error) {
+    console.error("User login failed:", error);
+    throw error;
+  }
+};
